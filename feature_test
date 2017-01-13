@@ -32,7 +32,7 @@ puts 7
 card.touch_out(aldgate)
 card.balance
 puts 6
-puts card.journeys
 card.touch_out(picadilly)
 card.balance
 puts 0
+card.oyster_account.journeys

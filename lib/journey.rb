@@ -1,27 +1,26 @@
 class Journey
-  attr_reader :journey_log
+  attr_accessor :entry_station, :exit_station
+
+  PENALTY = 6
 
   def initialize
-    @journey_log = {}
+    @entry_station = nil
+    @exit_station = nil
   end
 
-  def start(entry_station = nil)
-    @journey_log[:entry_station] = entry_station
-  end
-
-  def finish(exit_station = nil)
-    @journey_log[:exit_station] = exit_station
-  end
-
-  def complete?
-    !!(@journey_log[:entry_station] && @journey_log[:exit_station])
-  end
+  # def start(entry_station = nil)
+  #   @entry_station
+  # end
+  #
+  # def finish(exit_station = nil)
+  #   @exit_station
+  # end
 
   def fare(fare = Oystercard::MIN_LIMIT)
     fare
   end
 
-  def penalty(penalty = 6)
+  def penalty(penalty = PENALTY)
     penalty
   end
 
