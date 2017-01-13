@@ -41,6 +41,16 @@ class Oystercard
     @touched_in = false
   end
 
+  private
+  def deduct(money)
+    @balance -= money
+  end
+
+  def journey_printer
+    @journeys << @journey.journey_log
+    @journey = nil
+  end
+
   def creates_journey(station)
     @journey = Journey.new
     @journey.start(station)
@@ -55,15 +65,5 @@ class Oystercard
   def touch_out_edgecase
     creates_journey(nil)
     deduct(@journey.penalty)
-  end
-
-  private
-  def deduct(money)
-    @balance -= money
-  end
-
-  def journey_printer
-    @journeys << @journey.journey_log
-    @journey = nil
   end
 end
