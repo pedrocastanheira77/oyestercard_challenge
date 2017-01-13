@@ -1,0 +1,38 @@
+require './lib/oystercard'
+card = Oystercard.new
+card.top_up(10)
+card.touch_in("London Bridge")
+card.touch_out("Bank")
+card.touch_in("Clapham")
+card.touch_out("Victoria")
+card.journeys
+card.balance
+card.in_journey?
+card.entry_station
+
+clear
+irb
+require './lib/oystercard'
+card = Oystercard.new
+card.top_up(20)
+picadilly = Station.new("Picadilly", 1)
+victoria = Station.new("Victoria", 2)
+aldgate = Station.new("Aldgate", 1)
+card.touch_in(aldgate)
+card.touch_out(victoria)
+card.balance
+puts 19
+card.touch_in(aldgate)
+card.touch_in(victoria)
+card.balance
+puts 13
+card.touch_in(picadilly)
+card.balance
+puts 7
+card.touch_out(aldgate)
+card.balance
+puts 6
+puts card.journeys
+card.touch_out(picadilly)
+card.balance
+puts 0
