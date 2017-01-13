@@ -10,6 +10,7 @@ card.balance
 card.in_journey?
 card.entry_station
 
+exit
 clear
 irb
 require './lib/oystercard'
@@ -20,6 +21,7 @@ victoria = Station.new("Victoria", 2)
 aldgate = Station.new("Aldgate", 1)
 card.touch_in(aldgate)
 card.touch_out(victoria)
+card.oyster_account.fare
 card.balance
 puts 19
 card.touch_in(aldgate)
@@ -35,4 +37,4 @@ puts 6
 card.touch_out(picadilly)
 card.balance
 puts 0
-card.oyster_account.journeys
+puts card.oyster_account.journeys

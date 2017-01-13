@@ -1,4 +1,3 @@
-require_relative 'journey'
 require_relative 'station'
 require_relative 'journeylog'
 
@@ -36,10 +35,9 @@ class Oystercard
 
   def touch_out(station)
     touch_out_edgecase if @touched_in == false
-    @journey.exit_station = station
-    deduct(@journey.fare) if @touched_in == true
     @oyster_account.finish(station)
-    @oyster_account.log
+    deduct(@oyster_account.fare) if @touched_in == true
+    @oyster_account.log_journey
     @touched_in = false
   end
 
@@ -48,24 +46,18 @@ class Oystercard
     @balance -= money
   end
 
-  def journey_printer
-    @oyster_account.log
-  end
-
-  def creates_journey(entry_station)
-    @journey = Journey.new
-    @journey.entry_station = entry_station
-    @oyster_account.start(entry_station)
+  def creates_journey(station)
+    @oyster_account.start(station)
   end
 
   def touch_in_edgecase
-    deduct(@journey.penalty)
+    deduct(@oyster_account.penalty)
     @oyster_account.finish
-    @oyster_account.log
+    @oyster_account.log_journey
   end
 
   def touch_out_edgecase
     creates_journey(nil)
-    deduct(@journey.penalty)
+    deduct(@oyster_account.penalty)
   end
 end

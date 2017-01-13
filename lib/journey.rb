@@ -1,5 +1,5 @@
 class Journey
-  attr_accessor :entry_station, :exit_station
+  attr_accessor :entry_station, :exit_station, :fare, :penalty
 
   PENALTY = 6
 
@@ -8,20 +8,12 @@ class Journey
     @exit_station = nil
   end
 
-  # def start(entry_station = nil)
-  #   @entry_station
-  # end
-  #
-  # def finish(exit_station = nil)
-  #   @exit_station
-  # end
-
   def fare(fare = Oystercard::MIN_LIMIT)
-    fare
+    @fare = fare
   end
 
   def penalty(penalty = PENALTY)
-    penalty
+    @penalty = penalty
   end
 
 end
